@@ -1,0 +1,41 @@
+﻿@page
+@model BookListApp.Pages.BookList.CreateModel
+@{
+    ViewData["Title"] = "Create";
+}
+
+    <div class="container-fluid">
+        <form>
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text"
+                   class="form-control"
+                   name="title"
+                   id="title"
+                   placeholder="Enter Book Title"
+                   required />
+        </div>
+        <div class="form-group">
+            <label for="author">Author</label>
+            <input type="text"
+                   class="form-control"
+                   id="author"
+                   name="author"
+                   placeholder="Enter Book's Author Name"
+                   required />
+        </div>
+        <div class="form-group">
+            <label for="isbn">ISBN#</label>
+            <input type="text"
+                   class="form-control"
+                   id="isbn"
+                   name="isbn"
+                   placeholder="Enter Book's ISBN Number"
+                   required />
+        </div>
+        <button class="btn btn-primary btn-block" type="submit">
+            Add Book
+        </button>
+        </form>
+    </div>
+
