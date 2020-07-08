@@ -29,5 +29,25 @@ namespace BookListApp.Pages.BookList
             // Calling Db & getting all books and storing it into Books
             Books = await _db.Book.ToListAsync();
         }
+
+        public async Task<IActionResult> OnPostDelete(int id)
+        {
+            // Getting Book from Db
+            var book = await _db.Book.FindAsync(id);
+
+            if (book == null)
+            {
+                // If Book not found
+                return NotFound();
+            }
+
+            // Removing Book from Db
+            _db.Book.Remove(book);
+
+            // Saving changes
+            await _db.SaveChangesAsync();
+
+            return RedirectToPage("Index");
+        }
     }
 }

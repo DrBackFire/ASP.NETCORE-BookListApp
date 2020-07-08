@@ -16,6 +16,6 @@ namespace BookListApp.Model
         [Required] // To make sure that a user provide data
         public string Author { get; set; }
         [Required] // To make sure that a user provide data
-        public int ISBN { get; set; }
+        public string ISBN { get; set; }
     }
 }

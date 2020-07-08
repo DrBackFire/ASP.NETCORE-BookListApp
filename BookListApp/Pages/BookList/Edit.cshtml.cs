@@ -8,44 +8,49 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace BookListApp.Pages.BookList
 {
-    public class CreateModel : PageModel
+    public class EditModel : PageModel
     {
         // Using DI to access the Db
         private readonly ApplicationDbContext _db;
 
         // Extracting ApplicationDbContext inside DI Container and injecting it into this page
-        public CreateModel(ApplicationDbContext db)
+        public EditModel(ApplicationDbContext db)
         {
             _db = db;
         }
 
-        // The bind proberty is used so that no need for paramters to be passed on post req.
         [BindProperty]
         // Display method to display Book details
         public Book Book { get; set; }
 
-        public void OnGet()
+        public async Task OnGet(int id)
         {
-
+            // Making a get req to Db to get the requested book using id
+            Book = await _db.Book.FindAsync(id);
         }
 
-        // Post Handeler
         public async Task<IActionResult> OnPost() // IActionResult is to redirect to a new page
         {
             if (ModelState.IsValid) // Validating user input on server-side
             {
-                // Getting new book ready to be added to Db
-                await _db.Book.AddAsync(Book);
+                // Getting Book from Db
+                var BookFromDb = await _db.Book.FindAsync(Book.Id);
+
+                // Setting the user input to the retrived book
+                BookFromDb.Title = Book.Title;
+                BookFromDb.Author = Book.Author;
+                BookFromDb.ISBN = Book.ISBN;
 
                 // Saving changes to Db
                 await _db.SaveChangesAsync();
 
                 // Redirect to booklist page
                 return RedirectToPage("Index");
-            }else
+            }
+            else
             {
                 // If no user input then return the same page
-                return Page();
+                return RedirectToPage();
             }
         }
     }

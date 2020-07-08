@@ -1,0 +1,69 @@
+﻿@page
+@model BookListApp.Pages.BookList.EditModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<header class="h2 text-success">Edit Book</header>
+<br />
+<div class="container border p-4">
+    <form method="post">
+
+        @*The id has to be present when passing the updated book, else it will throw an error*@
+        <input type="hidden" asp-for="Book.Id"/>
+
+        @*Alert Handeler*@
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+
+        <div class="form-group">
+
+            <label asp-for="Book.Title">Title</label>
+
+            <input type="text"
+                   class="form-control"
+                   id="title"
+                   placeholder="Enter Book Title"
+                   asp-for="Book.Title" />
+
+            @*Alert text*@
+            <span class="text-danger" asp-validation-for="Book.Title"></span>
+
+        </div>
+
+        <div class="form-group">
+
+            <label asp-for="Book.Author">Author</label>
+            <input type="text"
+                   class="form-control"
+                   id="author"
+                   placeholder="Enter Book's Author Name"
+                   asp-for="Book.Author" />
+
+            @*Alert text*@
+            <span class="text-danger" asp-validation-for="Book.Author"></span>
+        </div>
+
+        <div class="form-group">
+
+            <label asp-for="Book.ISBN">ISBN#</label>
+            <input type="text"
+                   class="form-control"
+                   id="isbn"
+                   placeholder="Enter Book's ISBN Number"
+                   asp-for="Book.ISBN" />
+
+            @*Alert text*@
+            <span class="text-danger" asp-validation-for="Book.ISBN"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-4 offset-2">
+                <input class="btn btn-primary form-control" type="submit" value="Update Book" />
+            </div>
+
+            <div class="col-4">
+                <a asp-page="Index" class="btn btn-info form-control text-white">Back to List</a>
+            </div>
+        </div>
+    </form>
+</div>
+

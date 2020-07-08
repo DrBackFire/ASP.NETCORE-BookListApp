@@ -415,3 +415,5 @@ C:\Users\DrBackFire\Documents\Projects\C# Projects\ASP.NetCoreApps\BookList\ASP.
 C:\Users\DrBackFire\Documents\Projects\C# Projects\ASP.NetCoreApps\BookList\ASP.NETCORE-BookListApp\BookListApp\obj\Debug\netcoreapp3.1\BookListApp.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\DrBackFire\Documents\Projects\C# Projects\ASP.NetCoreApps\BookList\ASP.NETCORE-BookListApp\BookListApp\obj\Debug\netcoreapp3.1\BookListApp.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\DrBackFire\Documents\Projects\C# Projects\ASP.NetCoreApps\BookList\ASP.NETCORE-BookListApp\BookListApp\obj\Debug\netcoreapp3.1\Razor\Pages\BookList\Index.cshtml.g.cs
+C:\Users\DrBackFire\Documents\Projects\C# Projects\ASP.NetCoreApps\BookList\ASP.NETCORE-BookListApp\BookListApp\obj\Debug\netcoreapp3.1\Razor\Pages\BookList\Create.cshtml.g.cs
+C:\Users\DrBackFire\Documents\Projects\C# Projects\ASP.NetCoreApps\BookList\ASP.NETCORE-BookListApp\BookListApp\obj\Debug\netcoreapp3.1\Razor\Pages\BookList\Edit.cshtml.g.cs

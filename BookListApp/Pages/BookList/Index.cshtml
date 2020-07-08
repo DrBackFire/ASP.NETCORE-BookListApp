@@ -1,101 +1,91 @@
 ﻿@page
 @model BookListApp.Pages.BookList.IndexModel
+@{
+    ViewData["Title"] = "All Books";
+}
 
+<br />
 
-
-<div class="container-fluid">
-
-    @*Header div*@
-    <div class="heading text-center mt-3 border-bottom border-warning mb-5"
-         id="ShowAlert">
-        <svg class="bi bi-book-half d-inline mb-5 text-primary"
-             width="5em"
-             height="5em"
-             viewBox="0 0 16 16"
-             fill="currentColor"
-             xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd"
-                  d="M3.214 1.072C4.813.752 6.916.71 8.354 2.146A.5.5 0 018.5 2.5v11a.5.5 0 01-.854.354c-.843-.844-2.115-1.059-3.47-.92-1.344.14-2.66.617-3.452 1.013A.5.5 0 010 13.5v-11a.5.5 0 01.276-.447L.5 2.5l-.224-.447.002-.001.004-.002.013-.006a5.017 5.017 0 01.22-.103 12.958 12.958 0 012.7-.869zM1 2.82v9.908c.846-.343 1.944-.672 3.074-.788 1.143-.118 2.387-.023 3.426.56V2.718c-1.063-.929-2.631-.956-4.09-.664A11.958 11.958 0 001 2.82z"
-                  clip-rule="evenodd" />
-            <path fill-rule="evenodd"
-                  d="M12.786 1.072C11.188.752 9.084.71 7.646 2.146A.5.5 0 007.5 2.5v11a.5.5 0 00.854.354c.843-.844 2.115-1.059 3.47-.92 1.344.14 2.66.617 3.452 1.013A.5.5 0 0016 13.5v-11a.5.5 0 00-.276-.447L15.5 2.5l.224-.447-.002-.001-.004-.002-.013-.006-.047-.023a12.582 12.582 0 00-.799-.34 12.96 12.96 0 00-2.073-.609z"
-                  clip-rule="evenodd" />
-        </svg>
-        <h1 class="d-inline display-2 text-dark">
-            My<span class="text-primary display-2">Book</span>List
-        </h1>
+@*Table view*@
+<div class="container row p-0 m-0">
+    <div class="col-7">
+        <h3 class="text-info">Your Book List</h3>
     </div>
 
-    @*Table view*@
-    <div class="col-12  p-3 mt-3">
-       
+    <div class="col-5">
+        <a asp-page="Create" class="btn btn-info form-control text-white">Add a New Book</a>
+    </div>
+    <div class="col-12 border p-3 mt-5">
+        <form method="post">
             @if (Model.Books.Count() > 0)
             {
-            <table class="table table-striped mt-4 table-hover text-center rounded">
-                <thead class="table-secondary">
-                    <tr>
-                        <th>
-                            <label asp-for="Books.FirstOrDefault().Title"></label>
-                        </th>
-
-                        <th>
-                            <label asp-for="Books.FirstOrDefault().Author"></label>
-                        </th>
-
-                        <th>
-                            <label asp-for="Books.FirstOrDefault().ISBN"></label>
-                        </th>
-                        <th>
-                            <label>Modify</label>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model.Books)
-                    {
+                <table class="table table-striped mt-4 table-hover text-center rounded">
+                    <thead class="table-dark">
                         <tr>
-                            <td>
-                                @*Using HTML Helper*@
+                            <th>
+                                <label asp-for="Books.FirstOrDefault().Title"></label>
+                            </th>
 
-                                @Html.DisplayFor(m => item.Title)
-                            </td>
+                            <th>
+                                <label asp-for="Books.FirstOrDefault().Author"></label>
+                            </th>
 
-                            <td>
-                                @Html.DisplayFor(m => item.Author)
-                            </td>
-
-                            <td>
-                                @Html.DisplayFor(m => item.ISBN)
-                            </td>
-
-                            <td>
-                                @*Pen btn*@
-                                <a href="#">
-                                    <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-pencil text-info mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" d="M11.293 1.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-.39.242l-3 1a1 1 0 0 1-1.266-1.265l1-3a1 1 0 0 1 .242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z" />
-                                        <path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 0 0 .5.5H4v.5a.5.5 0 0 0 .5.5H5v.5a.5.5 0 0 0 .5.5H6v-1.5a.5.5 0 0 0-.5-.5H5v-.5a.5.5 0 0 0-.5-.5H3z" />
-                                    </svg>
-                                </a>
-
-                                @*Trash btn*@
-                                <a href="#">
-                                    <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-trash text-danger ml-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
-                                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
-                                    </svg>
-                                </a>
-                            </td>
+                            <th>
+                                <label asp-for="Books.FirstOrDefault().ISBN"></label>
+                            </th>
+                            <th>
+                                <label>Modify</label>
+                            </th>
                         </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Books)
+                        {
+                            <tr>
+                                <td>
+                                    @*Using HTML Helper*@
+
+                                    @Html.DisplayFor(m => item.Title)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(m => item.Author)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(m => item.ISBN)
+                                </td>
+
+                                <td>
+                                    @*Pen btn*@
+                                    <a asp-page="Edit" asp-route-id="@item.Id">
+                                        <!--Getting the id of the selected book to edit-->
+
+                                        <svg width="1.7em" height="1.7em" viewBox="0 0 16 16" class="bi bi-pencil text-success mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M11.293 1.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-.39.242l-3 1a1 1 0 0 1-1.266-1.265l1-3a1 1 0 0 1 .242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z" />
+                                            <path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 0 0 .5.5H4v.5a.5.5 0 0 0 .5.5H5v.5a.5.5 0 0 0 .5.5H6v-1.5a.5.5 0 0 0-.5-.5H5v-.5a.5.5 0 0 0-.5-.5H3z" />
+                                        </svg>
+                                    </a>
 
 
-                    }
-                </tbody>
-            </table>
+                                    <button asp-page-handler="Delete"
+                                            asp-route-id="@item.Id"
+                                            onclick="return confirm('Are you sure you want to delete?')"
+                                            class="btn btn-danger btn-sm">
+                                        Delete
+                                    </button>
+                                </td>
+                            </tr>
+
+
+                        }
+                    </tbody>
+                </table>
             }
             else
             {
                 <p>No books, add a book...</p>
             }
-      
+        </form>
     </div>
 </div>

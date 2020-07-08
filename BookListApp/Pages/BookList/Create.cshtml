@@ -3,39 +3,67 @@
 @{
     ViewData["Title"] = "Create";
 }
+    <header class="h2 text-success">Create a New Book</header>
+<br />
+    <div class="container border p-4">
+        <form method="post">
 
-    <div class="container-fluid">
-        <form>
-        <div class="form-group">
-            <label for="title">Title</label>
-            <input type="text"
-                   class="form-control"
-                   name="title"
-                   id="title"
-                   placeholder="Enter Book Title"
-                   required />
-        </div>
-        <div class="form-group">
-            <label for="author">Author</label>
-            <input type="text"
-                   class="form-control"
-                   id="author"
-                   name="author"
-                   placeholder="Enter Book's Author Name"
-                   required />
-        </div>
-        <div class="form-group">
-            <label for="isbn">ISBN#</label>
-            <input type="text"
-                   class="form-control"
-                   id="isbn"
-                   name="isbn"
-                   placeholder="Enter Book's ISBN Number"
-                   required />
-        </div>
-        <button class="btn btn-primary btn-block" type="submit">
-            Add Book
-        </button>
+            @*Alert Handeler*@
+            <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+
+            <div class="form-group">
+
+                <label asp-for="Book.Title">Title</label>
+
+                <input type="text"
+                        class="form-control"
+                           id="title"
+                           placeholder="Enter Book Title"
+                           asp-for="Book.Title" />
+
+                @*Alert text*@
+                <span class="text-danger" asp-validation-for="Book.Title"></span>
+
+            </div>
+
+            <div class="form-group">
+
+                <label asp-for="Book.Author">Author</label>
+                <input type="text"
+                       class="form-control"
+                       id="author"
+                       placeholder="Enter Book's Author Name"
+                       asp-for="Book.Author" />
+
+                @*Alert text*@
+                <span class="text-danger" asp-validation-for="Book.Author"></span>
+            </div>
+
+            <div class="form-group">
+
+                <label asp-for="Book.ISBN">ISBN#</label>
+                <input type="text"
+                       class="form-control"
+                       id="isbn"
+                       placeholder="Enter Book's ISBN Number"
+                       asp-for="Book.ISBN" />
+
+                @*Alert text*@
+                <span class="text-danger" asp-validation-for="Book.ISBN"></span>
+            </div>
+            <div class="form-group row">
+                <div class="col-4 offset-2">
+                    <input class="btn btn-primary form-control" type="submit" value="Add Book" />
+                </div>
+
+                <div class="col-4">
+                    <a asp-page="Index" class="btn btn-info form-control text-white">Back to List</a>
+                </div>
+            </div>
         </form>
     </div>
 
+@*To make the validation for the form on the client-side*@
+@section Scripts {
+<partial name="_ValidationScriptsPartial"/>
+}
